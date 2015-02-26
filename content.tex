@@ -1,0 +1,967 @@
+% DO NOT COMPILE THIS FILE DIRECTLY!
+% This is included by the the driver file (FlipBeamerTemplate.tex).
+
+{ %% This is a total kludge for a fancy title page background
+\setbeamertemplate{sidebar right}{\llap{\includegraphics[width=\paperwidth,height=\paperheight]{BG_upper}}}
+\begin{frame}[c]%{\phantom{title page}} 
+% The \phantom{title page} is a kludge to get the red bar on top
+% \titlepage
+\begin{center}
+	% \includegraphics[width=7cm]{WarpedPenguinsReturn}
+
+	\begin{tikzpicture}%[show background grid] %% Use grid for positioning, then turn off
+		\node[inner sep=0pt,above right] (title) 
+			{ \includegraphics[width=7cm]{\titleimage} };
+		% \node (title) at (1.5,1.5) {};
+	\end{tikzpicture}
+	\quad
+
+	% \includegraphics[width=7cm]{\titleimage} 
+	
+	\vspace{1em}
+	\footnotesize\textcolor{gray}{Journal of Cool Beans
+	\texttt{[arXiv:1234.5678]}}
+	\vspace{.5em}
+	
+	\includegraphics[height=1.5cm]{\tanedo} \quad
+	 % {\fontspec{Zapfino} Flip Tanedo} \quad
+	% \includegraphics[height=1cm]{FlipSansSerif} \quad
+	\includegraphics[height=1.5cm]{CUasym}\\
+	% \footnotesize\textcolor{gray}{In collaboration with} Csaba Cs\'aki\textcolor{gray}{,} Yuval Grossman\textcolor{gray}{, and} Yuhsin Tsai\normalsize\\
+		\footnotesize\textcolor{gray}{In collaboration with 
+		D. Grayson, J. Todd, T. Drake, S. Brown, D. Wayne}\normalsize\\
+	\textcolor{normal text.fg!50!Comment}{\textit{Gotham University}, \today}
+	% \textcolor{Comment}{ \;($\pi$ day)}\\
+	% \Comment{4 February 2011}
+\end{center}
+\end{frame}
+}
+
+
+
+\begin{frame}[c]{Beamer Theme Flip 2012}{A work in progress}
+	This is a template for Flip's Beamer theme. Features:
+	\begin{itemize}
+		\item Option for dark or light background. 
+		\\ 
+		% \textcolor{charcoal}{Dark looks nicer, but white prints better. The goal is to be able to give a presentation with the dark background, but quickly recompile to get handouts with the white background.}
+		 % \comment{Dark looks nicer, but white prints better. The goal is to be able to give a presentation with the dark background, but quickly recompile to get handouts with the white background.}
+		\normalsize
+		\item Option for large `slide number / total slides' on bottom bar\\
+		% \Comment{Dark looks nicer, but white prints better. The goal is to be able to give a presentation Dark looks nicer, but white prints better. The goal is to be able to give a presentation with the dark background, but quickly recompile to get handouts}
+		\item Option for watermark on top of a gradient background
+		\item Only works for PDFLaTeX/XeLaTeX! (Default on OS X)
+		\item ... work in progress! 
+	\end{itemize}
+	
+	\begin{block}{2012 updates}
+		The new package is streamlined for nicer code. Also uses \texttt{fontspec} for \textit{XeLaTeX} support. {\fontspec{Marker Felt}You can now abuse fonts.}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}[c]{Block Party}{Different kinds of blocks}
+	\begin{block}{Block}
+		Normal block. Colorless, neutral.
+	\end{block}
+
+	\begin{exampleblock}{Example Block}
+		Example block. (Potential uses: list of pros, relaxing facts)
+	\end{exampleblock}
+
+	\begin{alertblock}{Alert Block}
+		Alert block. (Potential uses: list of cons, impending doom)
+	\end{alertblock}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{Defined colors}
+% \begin{itemize}
+% \item This is \color{crimsonred}{crimsonred}\usebeamercolor[fg]{normaltext}.
+% \item This is \color{charcoal}{charcoal}\usebeamercolor[fg]{normaltext}.
+% \item This is \color{paleblue}{paleblue}\usebeamercolor[fg]{normaltext}.
+% \item This is \color{turtlegreen}{turtlegreen}\usebeamercolor[fg]{normaltext}.
+% \end{itemize}
+
+		\begin{columns}[t]
+		\begin{column}[T]{5.5cm}
+			\begin{itemize}
+			\item This is \textcolor{crimsonred}{crimsonred}.
+			\item This is \textcolor{paleale}{paleale} / \textcolor{lager}{lager}.
+			\item This is \textcolor{turtlegreen}{turtlegreen} / \textcolor{green}{green}.
+			\item This is \textcolor{paleblue}{paleblue}.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}[T]{5.5cm}
+			\begin{itemize}
+			\item This is \textcolor{gray}{gray}.
+			\item This is \textcolor{charcoal}{charcoal}.
+			\item This is \textcolor{jeans}{jeans}.
+			\item This is \textcolor{regal}{regal}.
+			% \item This is \textcolor{keynotetop}{keynotetop}.
+			\end{itemize}
+		\end{column}
+		\end{columns}
+		\vspace{1em}
+
+You can use the \alert{\texttt{textcolor}} command to use these, but the goal is to do things in a way where there are no calls to explicit colors, just user-adjustable values.
+\end{frame}
+
+
+
+\begin{frame}[c]{Color styles}
+	These are some useful pre-defined color styles.
+	
+		\begin{columns}[t]
+		\begin{column}[T]{5cm}
+			\begin{itemize}
+			\item This is \alert{alert}.
+			\item This is \Alert{Alert}.
+			\item This is \ALERT{ALERT}.
+			% \item This is \alert3{alert3}.
+			\end{itemize}
+		\end{column}
+
+		\begin{column}[T]{5cm}
+			\begin{itemize}
+			\item This is \comment{comment}.
+			\item This is \Comment{Comment}.
+			\item This is \COMMENT{COMMENT}.
+			% \item This is \textcolor{charcoal}{comment3}.
+			\end{itemize}
+		\end{column}
+		\end{columns}
+		\vspace{1em}
+		Some colors like \textcolor{FlipGreen}{FlipGreen} and \textcolor{FlipSand}{FlipSand} will automatically change tint when when you define light or dark backgrounds. \Comment{This makes it easier to swap between light/dark backgrounds by just modifying one option and recompiling.}
+		
+		\vspace{1em}
+		\Comment{The `comment' styles are automatically footnote-sized.}
+\end{frame}
+
+
+
+\begin{frame}[t]{Absolute placement}
+
+%% Compare when you turn this on:
+	% \uncover<2->
+	% {
+	% 	\begin{picture}(0,0)(0,0)
+	% 		\put(10,-250)
+	% 		{\includegraphics[width=7cm]{TRex}}
+	% 	\end{picture}
+	% }
+
+This slide demonstrates
+\begin{itemize}
+	\item \alert{absolute placement}  of images using the \texttt{put} command in the \texttt{picture} environment.
+	\item Note the overlap. Further, note that the particular depend on where the picture is defined. \\
+	\comment{If you define the picture at the top of the slide, then it will have fixed coordinates (using the [t] alignment). The cost is that the image is then behind all the text.}
+	\item Beamer respects \texttt{png} and \texttt{pdf} transparencies.
+\end{itemize} 
+
+\uncover<2->
+{
+	\begin{picture}(0,0)(0,0)
+		\put(10,-100)
+		{\includegraphics[width=7cm]{TRex}}
+	\end{picture}
+}
+
+	\vspace{1 em}
+	\footnotesize{\Comment{Image: \url{http://www.smbc-comics.com/index.php?db=comics\&id=2109}}
+	\vspace{1 em}
+	\comment{Some alternatives for placing images:
+	\url{http://www.texample.net/tikz/examples/transparent-png-overlay/}}}
+	\normalsize
+\end{frame}
+
+
+
+\begin{frame}[c]{Columns}{Sometimes it's useful to split the screen}
+	Test why is it gray?
+	
+	\begin{columns}[t]
+	\begin{column}[T]{5cm}
+		Here's a column where I can write a bunch of things. \\
+		\Comment{There are all sorts of things I can do in paragraph form.}
+		
+		\vspace{1em}
+		\begin{block}{Blocks}
+			...work in here too.
+		\end{block}
+	\end{column}
+	\begin{column}[T]{5cm}
+		\begin{itemize}
+			\item Here's a column
+			\item where I can itemize
+			\item a bunch of things.
+		\end{itemize}
+	\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}[c]{Sample Feynman Diagrams}
+	Using \texttt{tikzfeynman.sty}, you can draw Feynman diagrams with ease. \comment{The default color follows the normal text, so it automatically changes color when you swap from a light to a dark background.}
+	
+	\begin{center}
+	\begin{tikzpicture}[line width=1.5 pt, scale=.6]
+		\draw [fermionbar]		(-3,1.5) -- (-2,.75);
+		\draw [fermionbar]		(-2,.75) -- (-1,0);
+		\draw [fermionbar]		(-1,0) -- (-2,-.75);
+		\draw [fermionbar]		(-2,-.75) -- (-3,-1.5);
+		\draw [vector]			(-1,0) -- (1,0);
+		\draw [fermionbar]		(2,-1.5) -- (1,0);
+		\draw [fermionbar]		(1,0) -- (2,1.5);
+		\draw [scalar, dash pattern=on 5pt off 4pt]			(-2,.75) -- (-2,-.75);
+	\end{tikzpicture}
+	\usebeamercolor[fg]{title}
+	\begin{tikzpicture}[line width=1.5 pt, scale=.6]
+		\draw [fermionbar]		(-3,1.5) -- (-2,.75);
+		\draw [fermionbar]		(-2,.75) -- (-1,0);
+		\draw [fermionbar]		(-1,0) -- (-2,-.75);
+		\draw [fermionbar]		(-2,-.75) -- (-3,-1.5);
+		\draw [vector]			(-1,0) -- (1,0);
+		\draw [fermionbar]		(2,-1.5) -- (1,0);
+		\draw [fermionbar]		(1,0) -- (2,1.5);
+		\draw [scalar, dash pattern=on 5pt off 4pt]			(-2,.75) -- (-2,-.75);
+	\end{tikzpicture}
+	\usebeamercolor[fg]{normal text}
+	\begin{tikzpicture}[line width=1.5 pt, scale=.6]
+		\draw [fermionbar]		(-3,1.5) -- (-2,.75);
+		\draw [fermionbar]		(-2,.75) -- (-1,0);
+		\draw [fermionbar]		(-1,0) -- (-2,-.75);
+		\draw [fermionbar]		(-2,-.75) -- (-3,-1.5);
+		\draw [vector, color=ALERT]			(-1,0) -- (1,0);
+		\draw [fermionbar]		(2,-1.5) -- (1,0);
+		\draw [fermionbar, color=FlipGreen]		(1,0) -- (2,1.5);
+		\draw [scalar, dash pattern=on 5pt off 4pt]			(-2,.75) -- (-2,-.75);
+	\end{tikzpicture}
+	\end{center}
+	\vspace{1em}
+	This makes it easy to copy and paste TikZ code from your paper! You can also import diagrams as images. Be sure to use an empty background and pdf/png format to ensure transparency.  
+	
+	
+	\usebeamercolor[fg]{normal text} 
+	% Don't forget to include this when you're done futzing with colors
+\end{frame}
+
+
+\begin{frame}[c]{More Feynman Diagrams}
+	Note that TikZ code is preferred because it will automatically change colors and its easy to modify.
+	
+	\begin{center}
+		\begin{tikzpicture}[line width=1.5 pt, scale=1.3]
+			\draw[fermion] (-1,0) -- (0,0);
+			\draw[fermion] (0,0) -- (0,-1);
+			\draw[fermion] (0,-1) -- (-1,-1);
+			\draw[gluon] (0,0) -- (.5,0);
+			\draw[gluon] (.5,0) -- (1,0);
+			\draw[gluon] (.5,0) arc (180:270:.5);
+			\draw[gluon] (0,-1) -- (1,-1);
+			\draw[fermion] (2,-1) -- (1,-1);
+			\draw[fermion] (1,-1) -- (1,-.5);
+			\draw[fermion] (1,-.5) -- (1,0);
+			\draw[fermion] (1,0) -- (1.5,0);
+			\draw[fermion] (1.5,0) -- (2,0);
+			\draw[fermion] (2,0) -- (2.5,0);
+			\draw[fermion] (2.5,0) -- (3.5,0);
+			\draw[gluon] (1.5,0) arc (180:0:.5);
+			\draw[gluon] (2,0) -- (2,-.5);
+			\draw[gluon] (2,-.5) -- (2,-1);
+			\draw[gluon] (2,-.5) arc (90:0:.5);
+			\draw[fermion] (3.5,-1) -- (2.5,-1);
+			\draw[fermion] (2.5,-1) -- (2,-1);
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+
+\begin{frame}[c]{More Feynman diagrams}{'t Hooft operator}
+	
+	% \usebeamercolor[fg]{alerted text}
+	\begin{center}
+		\begin{tikzpicture}[line width=1.5 pt, scale=2.5]
+			\draw[fermionbar] (0:.75) -- (25:.29);
+			\draw[fermionnoarrow] (0:.75) -- (-25:.29);
+			\draw[scalar] (0:.75) -- (0:1.25);
+			\begin{scope}[shift={(1.25,0)}]
+				\draw (125:.1) -- (-55:.1);
+				\draw (55:.1) -- (-125:.1);			
+			\end{scope}
+			\draw[fermionbar] (60:.75) -- (85:.29);
+			\draw[fermionnoarrow] (60:.75) -- (35:.29);
+			\draw[scalar] (60:.75) -- (60:1.25);
+			\begin{scope}[shift={(60:1.25)}, rotate=60]
+				\draw (125:.1) -- (-55:.1);
+				\draw (55:.1) -- (-125:.1);			
+			\end{scope}
+			\draw[fermionbar] (120:.75) -- (145:.29);
+			\draw[fermionnoarrow] (120:.75) -- (95:.29);
+			\draw[scalar] (120:.75) -- (120:1.25);
+			\begin{scope}[shift={(120:1.25)}, rotate=120]
+				\draw (125:.1) -- (-55:.1);
+				\draw (55:.1) -- (-125:.1);			
+			\end{scope}
+			\draw[fermionbar] (300:.75) -- (325:.29);
+			\draw[fermionnoarrow] (300:.75) -- (275:.29);
+			\draw[scalar] (300:.75) -- (300:1.25);
+			\begin{scope}[shift={(300:1.25)}, rotate=300]
+				\draw (125:.1) -- (-55:.1);
+				\draw (55:.1) -- (-125:.1);			
+			\end{scope}
+			\draw (0,0) circle (.3cm);
+			% \draw[fill] (325:1) circle (.01);
+			% \draw[fill] (330:1) circle (.01);
+			% \draw[fill] (335:1) circle (.01);
+			% \draw[fill] (340:1) circle (.01);
+			% \draw[fill] (80:1) circle (.01);
+			% \draw[fill] (85:1) circle (.01);
+			% \draw[fill] (90:1) circle (.01);
+			% \draw[fill] (95:1) circle (.01);
+			% \draw[fill] (100:1) circle (.01);
+			% \draw[fill] (0,0) circle (.3cm);
+			% \draw[fill=white] (0,0) circle (.29cm);
+			\begin{scope}
+		    	\clip (0,0) circle (.3cm);
+		    	\foreach \x in {-.9,-.8,...,.3}
+					\draw[line width=1 pt] (\x,-.3) -- (\x+.6,.3);
+		  	\end{scope}
+			% \node at (0,0) {I};
+			\node at (278:.6) {$\lambda$};
+			\node at (323:.6) {$Q$};
+			\node at (98:.6) {$\lambda$};
+			\node at (143:.6) {$\overline Q$};
+			\node at (290:1) {$\tilde Q$};
+			\node at (130:1) {$\tilde Q$};
+			\node at (300:1.5) {$v$};
+			\node at (120:1.5) {$v$};
+			\node at (60:1.5) {$v$};
+			\node at (0:1.5) {$v$};
+			\draw[fermionnoarrow] (180:.75) -- (180:.29);
+			\draw[fermionnoarrow] (240:.75) -- (240:.29);
+			\draw[fermion] (160:1) -- (180:.75);
+			\draw[scalar] (180:.75) -- (200:1);
+			\begin{scope}[shift={(200:1)}, rotate=60]
+				\draw (125:.1) -- (-55:.1);
+				\draw (55:.1) -- (-125:.1);			
+			\end{scope}
+			\draw[fermion] (260:1) -- (240:.75);
+			\draw[scalar] (240:.75) -- (220:1);
+			\begin{scope}[shift={(220:1)}]
+				\draw (125:.1) -- (-55:.1);
+				\draw (55:.1) -- (-125:.1);			
+			\end{scope}
+			\node at (200:1.25) {$v$};
+			\node at (220:1.25) {$v$};
+			\node at (265:1.2) {$Q$};
+			\node at (155:1.2) {$\overline Q$};
+		 \end{tikzpicture}
+	\end{center}
+	\usebeamercolor[fg]{normal text} 
+	% Don't forget to include this when you're done futzing with colors
+\end{frame}
+
+\begin{frame}[c]{Even more diagrams}
+	\begin{center}
+			\begin{tikzpicture}[line width=1.5 pt, scale=.6]
+			\draw [fermionbar]		(-2,1.5) -- (-1,1);
+			\draw [fermionbar]		(-1,-1) -- (-2,-1.5);
+			\draw [fermionbar]		(2,-1.5) -- (1,-1);
+			\draw [fermionbar]		(1,1) -- (2,1.5);
+	%
+			\draw [draw] (-1,1) -- (1,1);
+			\draw [draw] (-1,-1) -- (1,-1);
+			\draw [scalar, dash pattern=on 5pt off 4pt] (-1,-1) -- (-1,1);
+			\draw [scalar, dash pattern=on 5pt off 4pt] (1,1) -- (1,-1);
+			\node at (-1.5,1.8) {\footnotesize\textcolor{Comment}{$b$}};
+			\node at (-1.5,-1.8) {\footnotesize\textcolor{Comment}{$s$}};
+			\node at (0,1.4) {\footnotesize\textcolor{FlipGreen}{$\chi_0$}};
+			\node at (0,-1.4) {\footnotesize\textcolor{FlipGreen}{$\chi_0$}};
+			\node at (1.5, 1.8) {\footnotesize\textcolor{Comment}{$\mu$}};
+			\node at (1.5, -1.8) {\footnotesize\textcolor{Comment}{$\mu$}};
+			\node at (-1.5, 0) {\footnotesize\textcolor{FlipGreen}{$\tilde d$}};
+			\node at (1.5, 0) {\footnotesize\textcolor{FlipGreen}{$\tilde \ell$}};
+		\end{tikzpicture}	
+		\hspace{2em}
+		\begin{tikzpicture}[line width=1.5 pt, scale=.6]
+			\draw [fermionbar]		(-3,1.5) -- (-2,.75);
+			\draw [fermionbar]		(-2,.75) -- (-1,0);
+			\draw [fermionbar]		(-1,0) -- (-2,-.75);
+			\draw [fermionbar]		(-2,-.75) -- (-3,-1.5);
+			\draw [vector]			(-1,0) -- (1,0);
+			\draw [fermionbar]		(2,-1.5) -- (1,0);
+			\draw [fermionbar]		(1,0) -- (2,1.5);
+			\draw [scalar, dash pattern=on 5pt off 4pt]			(-2,.75) -- (-2,-.75);
+			\node at (-2.5,1.7) {\footnotesize\textcolor{Comment}{$b$}};
+			\node at (-2.5,-1.7) {\footnotesize\textcolor{Comment}{$s$}};
+			\node at (0,0.5) {\footnotesize\textcolor{FlipGreen}{$Z$}};
+			\node at (1.75, 1.7) {\footnotesize\textcolor{Comment}{$\mu$}};
+			\node at (1.75, -1.7) {\footnotesize\textcolor{Comment}{$\mu$}};
+			\node at (-2.6, 0) {\footnotesize\textcolor{FlipGreen}{$\tilde g$}};
+			\node at (-1.5, 1) {\footnotesize\textcolor{FlipGreen}{$\tilde d$}};
+			\node at (-1.5, -1) {\footnotesize\textcolor{FlipGreen}{$\tilde d$}};
+		\end{tikzpicture}
+		\hspace{2em}
+		\begin{tikzpicture}[line width=1.5 pt, scale=.6]
+			\draw [fermionbar]		(-3,1.5) -- (-2,.75);
+			\draw [fermionbar]		(-2,.75) -- (-1,0);
+			\draw [fermionbar]		(-1,0) -- (-2,-.75);
+			\draw [fermionbar]		(-2,-.75) -- (-3,-1.5);
+			\draw [dash pattern=on 5pt off 4pt]			(-1,0) -- (1,0);
+			\draw [fermionbar]		(2,-1.5) -- (1,0);
+			\draw [fermionbar]		(1,0) -- (2,1.5);
+			\draw [scalar, dash pattern=on 5pt off 4pt]			(-2,.75) -- (-2,-.75);
+			\node at (-2.5,1.7) {\footnotesize\textcolor{Comment}{$b$}};
+			\node at (-2.5,-1.7) {\footnotesize\textcolor{Comment}{$s$}};
+			\node at (0,0.5) {\footnotesize\textcolor{FlipGreen}{$h$}};
+			\node at (1.75, 1.7) {\footnotesize\textcolor{Comment}{$\mu$}};
+			\node at (1.75, -1.7) {\footnotesize\textcolor{Comment}{$\mu$}};
+			\node at (-2.6, 0) {\footnotesize\textcolor{FlipGreen}{$\tilde u$}};
+			\node at (-1.5, 1) {\footnotesize\textcolor{FlipGreen}{$\tilde\chi^+$}};
+			\node at (-1.5, -1) {\footnotesize\textcolor{FlipGreen}{$\tilde\chi^-$}};
+		\end{tikzpicture}	
+	\end{center}
+	\vspace{1em}
+	TikZ and Beamer are both built on PGF, so they play together very nicely.
+\end{frame}
+
+\begin{frame}{Feynman diagrams and overlays}
+	
+	\begin{columns}[t]
+	\begin{column}[T]{5cm}
+		\begin{tikzpicture}[line width=2 pt]
+			\node (middle)		at ( 0,0) [circle, thick, minimum size=2cm] {}; 
+%			\draw <1> [scalarbar, line width = 2.5pt, dash pattern=on 5pt off 4pt]	(-1,0) arc  (180:0:1cm);
+			\draw <2-> [color=FlipGreen, line width = 2.5pt, dash pattern=on 5pt off 4pt]	(-1,0) arc  (180:0:1cm);
+			\draw [fermion]		(-2,0) -- (-1,0);
+			\draw [fermion]		(-1,0) -- ( 1,0);
+			\draw<1> [fermion]		( 1,0) -- (-1,0);
+			\draw [fermion]		( 1,0) -- ( 2,0);
+			\draw<3-> [vector, color=FlipSand]		(middle) -- (2,1);
+			%
+			\path (2,1) coordinate (poo);
+			\path (poo) ++ (10:1cm) coordinate (lower);
+			\path (poo) ++ (40:1cm) coordinate (upper);
+			\draw<4-> [fermion, color=FlipSand]	(lower) -- (poo);
+			\draw<4-> [fermion, color=FlipSand]	(poo) -- (upper);
+			%
+			\node	(lefty)  at (-2.3,  0) {$b$};
+			\node	(righty) at ( 2.3,  0) {$s$};
+			\node <2->	(middly) at ( 0, -0.4)   {$u_i$};
+			\node <5->	(uppy)	 at (   0,1.5) {\textcolor{FlipGreen}{\footnotesize{new physics}}};
+		\end{tikzpicture}
+	\end{column}
+
+	\begin{column}[T]{5cm}
+		\begin{exampleblock}{Penguin diagram}
+			Allows FCNC sub-diagram to occur on-shell.
+		\end{exampleblock}
+	\end{column}
+	\end{columns}
+
+	\vspace{.5cm}	   
+	
+	Here's an example where a sequence of overlays can be used to illustrate some useful physics.
+
+\end{frame}
+
+\begin{frame}[c]{Other diagrams}
+	Here's a nice picture illustrating Seiberg duality:
+	\vspace{.5em}
+	\begin{center}
+		\begin{tikzpicture}[line width =1.5, scale=.8]
+			\draw[fill] (0,0) circle (.075);
+			\draw[fermion] (0,0) -- (2.5,0);
+			\draw[fermionbar] (2.5,0) -- (4.5,0);
+			\draw[dashed] (4.5,0) -- (5.5,0) node[right] {$g$};
+			\draw[fill] (2.5,0) circle (.075);
+			\node[below] at (2.5,0) {$g_*$};
+			%
+			\draw[fermion] (0,3) -- (0,0);
+			\draw[dashed] (0,3) -- (0,3.5) node[above] {$y$};
+			%
+			% Bezier Curve!
+			\draw[fermion, line width=1] (.3,3) .. controls (.7,.2) and (.75,.2) .. (3,2);
+			\draw[fermion, line width=1, color=alert] (0,0) to [out=15, in=240] (3,2);
+			\draw[fermion, line width=1, color=ALERT] (2.5,0) -- (3,2);
+			\draw[fermion, line width=1] (4.5,.2) .. controls (3,.7) and (3.2,.4) .. (3,2);
+			%
+			\draw[fill] (3,2) circle (.075);
+			\draw[fermion, line width=1] (.5,3) .. controls (1,1) and (1.2,1) .. (3,2);
+			\draw[fermion, line width=1] (4.5,3) .. controls (3,2.5) and (3.5,2.5) .. (3,2);
+			\draw[fermion, line width=1] (1.5,3) to [out = -20, in = 110] (3,2);
+			\node[right] at (3,2) {\textcolor{COMMENT!75!white}{$(\hat g, \hat y)$}};
+		\end{tikzpicture}	
+	\end{center}
+	\vspace{.5em}
+	Image based on Strassler's `unorthodox' review of SUSY gauge theory.
+\end{frame}
+
+
+
+\begin{frame}[c]{Including a table}
+	
+	Here's how you include a table.
+	\vspace{1em}
+	
+	\footnotesize	
+		%%
+		\begin{tabular}{llll}\hline 
+		\textbf{Channel} & \textbf{Expt.} & \textbf{Bound (90\% CL)} & \textbf{SM Prediction} \\ \hline
+		\textcolor{FlipGreen}{$B^0_s \to \mu^+ \mu^-$} & \textcolor{FlipGreen}{CDF II}
+		                  & \textcolor{FlipGreen}{$<4.7\times 10^{-8}$}
+		                  & \textcolor{FlipGreen}{$(4.8\pm 1.3) \times 10^{-9}$} \\ 
+		$B^0_d \to \mu^+ \mu^-$ & CDF II
+		                  & $<1.5\times 10^{-8}$
+		                  & $(1.4\pm 0.4) \times 10^{-10}$  \\ 
+		\hline
+		$B^0_s \to \mu^+ e^-$ & CDF II
+		                  & $<2.0\times 10^{-7}$
+		                  & $\approx 0$ \\ 
+		$B^0_d \to \mu^+ e^-$ & CDF II
+		                  & $<6.4 \times 10^{-8}$
+		                  & $\approx 0$ \\
+		\hline 
+		\end{tabular}
+		\vspace{1em}
+		
+		\normalsize
+		% \begin{center}
+		% 	\begin{tabular}{rccccc}
+		% 		& SU($N$) & SU($F$) & SU($F$) & U($1$)$_B$ & U(1)$_{R_{\text{sc}}}$\\
+		% 		\hline
+		% 		$Q$ & $\Box$ & $\Box$ & 1 & 1 & $\frac{F-N}F$\\
+		% 		$\tilde Q$ & $\overline\Box$ & 1 & $\Box$ & $-1$ & $\frac{F-N}F$\\
+		% 		\hdashline
+		% 		$M$ & 1 & $\Box$ & $\Box$ & 0 & $2\frac{F-N}F$\\
+		% 		$q$ & $\Box$ & $\overline\Box$ & 1 & $\frac{N}{F-N}$ & $\frac{N}F$\\
+		% 		$\tilde q$ & $\overline\Box$ & 1 & $\overline\Box$ & $\frac{-N}{F-N}$&  $\frac{N}F$
+		% 	\end{tabular}		
+		% \end{center}
+\end{frame}
+
+
+\begin{frame}[c]{Some equations}{As if you didn't think Beamer could typeset equations...}
+	\begin{align*}
+		\left(\frac{\Lambda}{m}\right)^b = \left(\frac{\Lambda_L}{m}\right)^{b_L} \quad\Rightarrow\quad \left(\frac{\Lambda_{N,F}}{m}\right)^{3N-F}=\left(\frac{\Lambda_{N,F-1}}{m}\right)^{3N-(F-1)}
+	\end{align*}	
+	
+	\begin{align*}
+		G_k(z,z') = \frac{(R')^2}{R} G_y(x,x') = \frac{(R')^2}{R} \frac{xx'}{y} \frac{T(x,y)T(x',y)}{S(wy,y)}
+	\end{align*}
+
+	\begin{align*}
+	f_c &=\sqrt{\frac{1-2c}{1-(R/R')^{1-2c}}}
+	\end{align*}
+
+\end{frame}
+
+
+% \begin{frame}[t]{Fancy `Handwriting' Fonts}
+% 	Only works with the \texttt{emerald} package installed.
+% 	\begin{itemize}
+% 		\item \ECFAugie{ECFAugie. This is a rather charming font.} 
+% 		\item \ECFTallPaul{ECFTallPaul. This is a pretty cramped font.} 
+% 		\item \ECFJD{ECFJD. This is closest to my handwriting.}
+% 	\end{itemize}
+% \end{frame}
+
+
+
+
+\begin{frame}[t]{Design Notes}{Watermarking}
+	\begin{itemize}
+		\item Watermarks need to really be \alert{transparent} or else the background won't show through, e.g.\ if your background color is not plain white. Fortunately, PGF respects png transparency so watermark images can be saved as png images. Alternately, if you have a nice vector representation in TikZ, you can use the ``opacity'' option to make it semi-opaque.
+		\item The second problem with watermarks is that even once you have a transparent image, how do you stick it \Alert{behind} the main text of each slide? This is surprisingly subtle. The solution is to put all watermarks the ``sidebar right'' region controlled by the outer theme style. Anything placed here will remain \alert{behind} the main text of the screen.
+		\item At the moment this is not implemented in this theme.
+	\end{itemize}
+\end{frame}
+
+
+
+
+
+%\begin{frame}
+%\frametitle{Rigid body dynamics}
+%This is an amazing application of TikZ from \url{http://www.texample.net/tikz/examples/beamer-arrows/}
+%
+%\tikzstyle{na} = [baseline=-.5ex] % So that arrows start from vertical middle of sentence
+%
+%\begin{itemize}%[<+-| alert@+>]
+%    \item Coriolis acceleration
+%        \tikz[na] \node[coordinate] (n1) {};
+%\end{itemize}
+%
+%% Below we mix an ordinary equation with TikZ nodes. Note that we have to
+%% adjust the baseline of the nodes to get proper alignment with the rest of
+%% the equation.
+%\begin{align*}
+%\vec{a}_p = \vec{a}_o+\frac{d^2}{dt^2}\vec{r} +
+%        \tikz[baseline]{
+%            \node[fill=Alert,anchor=base] (t1)
+%            {\textcolor{white}{$\displaystyle 2\vec{\omega}_{ib}\times\frac{d}{dt}\vec{r}$}};
+%        } +
+%        \tikz[baseline]{
+%            \node[fill=comment, ellipse,anchor=base] (t2)
+%            {\textcolor{white}{$ \displaystyle\vec{\alpha}_{ib}\times\vec{r}$}};
+%        } +
+%        \tikz[baseline]{
+%            \node[fill=ALERT,anchor=base] (t3)
+%            {\textcolor{white}{$\displaystyle\vec{\omega}_{ib}\times(\vec{\omega}_{ib}\times\vec{r})$}};
+%        }
+%\end{align*}
+%
+%\begin{itemize}%[<+-| alert@+>]
+%    \item Transversal acceleration
+%        \tikz[na]\node [coordinate] (n2) {};
+%    \item Centripetal acceleration
+%        \tikz[na]\node [coordinate] (n3) {};
+%\end{itemize}
+%
+%% Now it's time to draw some edges between the global nodes. Note that we
+%% have to apply the 'overlay' style.
+%\begin{tikzpicture}[overlay, line width=1.5]
+%        \path[->]<1-> (n1) edge [bend left] (t1);
+%        \path[->]<2-> (n2) edge [bend right] (t2);
+%        \path[->]<3-> (n3) edge [out=0, in=-90] (t3);
+%\end{tikzpicture}
+%\end{frame}
+%
+
+
+
+
+
+\begin{frame}[t]{Aesthetic use of arrows and nodes}{The WIMP Miracle}
+	% expressions from 0901.4090, eq (8)
+	
+	\vspace{1em}
+	\tikz[baseline=-.5ex]\node[fill=Alert,anchor=base, rounded corners] (numbnote) {
+	\textcolor{white}{Contains factors of $M_\text{Pl}$, $s_0$, $\cdots$}
+	};
+	
+	% \vspace{1em}
+	
+	\large
+		\begin{align*}
+			\Omega_\text{DM} h^2 \approx 
+			% 0.1
+			\tikz[baseline=-.5ex]\node (numb) {\textcolor{Alert}{$0.1$}};
+			\left(\frac{x_\text{f}}{20}\right)
+			\left(\frac{g_*}{80}\right)^{-\frac{1}{2}}
+			\left(
+				\frac{\langle \sigma v\rangle_0}{
+				% 3\times 10^{-26} \text{ cm}^3/\text{s}
+				\tikz[baseline=-.5ex]\node (xsec) {\textcolor{Alert}{$3\times 10^{-26}$ cm$^3/$s}};
+				}
+			\right)
+		\end{align*}		
+	\normalsize
+	
+	\vspace{ 1.5em}
+	
+	\hspace{6cm}\tikz[baseline=-.5ex]\node[fill=Alert,anchor=north, rounded corners] (xsecnote) {
+	\textcolor{white}{$\displaystyle\sim \left\langle\frac{\alpha^2v}{(100\text{ GeV})^2}\right\rangle$}
+	};
+	
+	\vspace{1em}
+	\small
+	\url{http://www.texample.net/tikz/examples/beamer-arrows/}
+	\normalsize	
+	
+	% \begin{itemize}%[<+-| alert@+>]
+	%     \item Transversal acceleration
+	%         \tikz[baseline=-.5ex]\node [coordinate] (n2) {};
+	%     \item Centripetal acceleration
+	%         \tikz[baseline=-.5ex]\node [coordinate] (n3) {};
+	% \end{itemize}
+	\begin{tikzpicture}[overlay, line width=1.5]
+	        \path[->,color=Alert] (numbnote) edge [bend right] (numb);
+			\path[->,color=Alert] (xsecnote) edge [out=90, in=245] (xsec);
+	        % \path[->]<2-> (n2) edge [bend right] (t2);
+	        % \path[->]<3-> (n3) edge [out=0, in=-90] (t3);
+	\end{tikzpicture}
+\end{frame}
+
+
+
+
+\begin{frame}[c]{Node decorations, arrows}
+	The new scalar interactions take the form
+	\begin{align*}
+		\mathcal L \supset
+		\left[\frac 12 (\partial a)^2 + 
+		\frac{1}{2}
+		\tikz[baseline=-2.5ex]\node[fill=Alert,anchor=north, rounded corners] 
+		{\textcolor{white}
+		{$\displaystyle \bar\chi\slashed{\partial}\chi$}
+		};
+		% \bar\chi\slashed{\partial}\chi
+		\right]
+		\left(1 + 
+		% c_h \frac{v}{f}h
+		\tikz[baseline=-3ex]\node[fill=Alert,anchor=north, rounded corners] (ch)
+		{\textcolor{white}
+		{$\displaystyle c_h \frac{v}{f}h$}
+		};
+		+ \cdots\right)
+	\end{align*}
+	$c_h$ depends on $c_i$ and the Higgs mixing angles.
+	
+	\vspace{1em}
+
+	% \Comment{$c_h \to (m_h/m_s)^2$ in the large $m_s$ limit.\\ We neglect mixing with the heavy higgses.}
+	\hspace{6cm}\tikz[baseline=-3ex]\node[draw, color=Alert, anchor=north, rounded corners, line width=.2ex] (chcomment) 
+	{
+		$c_h$ controls direct detection
+	};
+	
+	\begin{tikzpicture}[overlay, line width=1.5, color=Alert]
+	        \path[->,color=Alert] (chcomment) edge [bend right] (ch);
+	\end{tikzpicture}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}[t]{Mind Maps} % MIND MAP
+	\Comment{\texttt{usetikzlibrary\{mindmap\}}}
+	% http://old.nabble.com/minmap-and-beamer-to9778591.html
+	% http://djkhaos.wordpress.com/2009/11/18/how-to-create-an-elegant-lecture-mindmap-using-pgftikz-%E2%80%94%E2%80%94-pgftikz%E4%B9%8B%E8%BE%BE%E8%8A%AC%E5%A5%87%E5%AF%86%E7%A0%81%EF%BC%883%EF%BC%89/
+	% http://www.statistiker-wg.de/pgf/tutorials/mindmap.htm
+
+	\begin{center}
+	\tikz[scale=0.7,transform shape,baseline=-2.5ex]\node[fill=charcoal!50!crimsonred, anchor=north, rounded corners, line width=.2ex] (a) 
+	{
+		\textcolor{white}{coupling to $a$}
+	};
+	\quad
+	\tikz[scale=0.7,transform shape,baseline=-2.5ex]\node[fill=COMMENT, anchor=north, rounded corners, line width=.2ex] (a) 
+	{
+		\textcolor{white}{coupling to $H$}
+	};
+	\quad
+	\tikz[scale=0.7,transform shape,baseline=-2.5ex]\node[fill=jeans!50!black, anchor=north, rounded corners, line width=.2ex] (a) 
+	{
+		\textcolor{white}{coupling to $g$, $\gamma$}
+	};
+	\end{center}
+
+	\begin{center}
+		\begin{tikzpicture}[scale=0.7,transform shape]%[mindmap, concept color=Alert, text=white, scale=0.7,transform shape]
+			\Huge
+			\begin{scope}[mindmap, concept color=Alert, text=white, scale=0.7,transform shape]
+			\tikzstyle{level 1 concept}+=[sibling angle=90]
+			\tikzstyle{level 2 concept}+=[sibling angle=45]
+			
+			\tikzstyle{root concept}+=[minimum size=1.5cm, text width=1cm] 
+			
+			\node[concept] (gf) {Goldstone Fermion interactions}
+				[clockwise from = 45]
+				child[concept color=COMMENT]{node[concept] (mixing) {Mixing}
+					[clockwise from = 15]
+					child[concept color=COMMENT]{node[concept] (scalar) {scalar}}
+					child[concept color=COMMENT]{node[concept] (kinetic) {kinetic}}
+				}
+				child[concept color=jeans!50!black]{node[concept] (anomaly) {Anomaly}
+				}
+				child[concept color=charcoal!50!crimsonred]{node[concept] (breaking) {Explicit breaking}
+				}
+				child[concept color=charcoal!50!crimsonred]{node[concept] (kahler) {NL$\Sigma$M K\"ahler}
+				}
+			;
+			\end{scope}
+			%%
+			\normalsize
+			\node[draw, color=Alert, anchor=south, rounded corners, line width=.2ex] at (0,3) {K\"ahler potential};
+			\node[draw, color=Alert, anchor=north, rounded corners, line width=.2ex] at (0,-2.5) {Superpotential};
+			\node[draw, color=COMMENT!50!jeans, anchor=west, rounded corners, line width=.2ex] at (2.5,0) {MSSM};
+			\node[draw, color=ALERT, anchor=east, rounded corners, line width=.2ex] at (-2.5,0) {coupling to $a$};
+		\end{tikzpicture}
+	\end{center}
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}{Fonts}
+	Some comments on fonts. 
+	
+	\begin{itemize}
+		\item I use \textit{XeLaTeX} and \texttt{fontspec} to specify local fonts. I try to only use readily available fonts on OS X and Adobe, but occasionally I will use a silly font like {\handwriting augie}. 
+		\item To mitigate incompatibility with users without these fonts, I include them as user-specified commands in the main file:\\
+		\texttt{\textbackslash newcommand\{\textbackslash handwriting\}\{\textbackslash fontspec\{augie\}\}}
+		\item If you don't have {\handwriting augie}, just replace it with a font you do have... or an empty bracket.
+		\item Bold in \textbf{Gill Sans} looks ugly, so I use bold in \textbf{\forbold Helvetica}. \texttt{\textbackslash textbf\{\textbackslash forbold stuff\}}
+	\end{itemize}
+\end{frame}
+
+
+
+
+
+\begin{frame}[c]{Drawing arrows onto a plot}
+	
+	\begin{tikzpicture}%[show background grid] %% Use grid for positioning, then turn off
+		\node [inner sep=0pt,above right] 
+			{\includegraphics[width=7.5cm]{\CMSSMDM}};
+		% \node[right] at (.5,8) {\Comment{\ECFAugie(Left of this ruled out)}};
+		\node[right]  at (0,0) {\footnotesize\textcolor{Comment}{1104.3572}};
+		\node[right] (red) at (7.5,5.5) {\footnotesize\textcolor{red}{Well tempered neutralino}};
+		\node[right] (cya) at (7.5,4.5) {\footnotesize\textcolor{cyan}{$h^0$ resonance}};
+		\node[right] (blu) at (7.5,3.5) {\footnotesize\textcolor{blue}{slepton co-annihilations}};
+		\node[right] (gre) at (7.5,2.5) {\footnotesize\textcolor{green}{$A^0$ resonance}};
+		\node[right] (mag) at (7.5,1.5) {\footnotesize\textcolor{magenta}{stop co-annihilations}};
+		\node (reddot) at (3,5.3) {};
+		\node (cyadot) at (4,3.5) {};
+		\node (bludot) at (3.5,2.5) {};
+		\node (gredot) at (6,2.5) {};
+		\node (magdot) at (3,1.3) {};
+		\path[->, color=red, line width=1.5] (red) edge [out = 160, in = 45] (reddot);
+		\path[->, color=cyan, line width=1.5] (cya) edge [out = 170, in = 45] (cyadot);
+		\path[->, color=blue, line width=1.5] (blu) edge [out = 180, in = 45] (bludot);
+		\path[->, color=FlipGreen, line width=1.5] (gre) edge [out = 170, in = 45] (gredot);
+		\path[->, color=magenta, line width=1.5] (mag) edge [out = 185, in = 15] (magdot);
+		\node[right]  at (2,6.7) {\Comment{Ruled out}};
+		% \node[inner sep=0pt,above right]  at (9,8)
+		% 	{\includegraphics[width=2cm]{WCC_psifreak}};
+	\end{tikzpicture}
+	\normalsize
+	
+\end{frame}
+
+
+
+
+%
+%\begin{frame}[c]{Parameter space scan}
+%	% This is a template for Flip's Beamer theme. Features:
+%	
+%	\begin{center}
+%	\begin{tikzpicture}%[show background grid] %% Use grid for positioning, then turn off
+%		\node at (5,6) {\large \textbf{Direct Detection}};
+%		\node [inner sep=0pt,above right] 
+%			{\includegraphics[width=9cm]{\scan}};
+%		\node[rotate=90] at (.25,3.5) {\footnotesize $\sigma$ [cm$^2$]};
+%		\node at (5,.25) {\footnotesize$m_\chi$ [GeV]};
+%		\node[right] at (8.8,4.2) {\footnotesize XENON};
+%		\normalsize
+%		\node[rotate = 15, fill=blue, rounded corners] at (4,3) {
+%		\footnotesize
+%		\textcolor{white}{$500<f<700$ GeV}
+%		};
+%		\node[rotate = 15, fill=magenta, rounded corners] at (5.5,2.7) {
+%		\footnotesize
+%		\textcolor{white}{$700<f<800$ GeV}
+%		};
+%		\node[rotate = 15, fill=green, rounded corners] at (6.5,2.3) {
+%		\footnotesize
+%		\textcolor{white}{$800<f<900$ GeV}
+%		};
+%		\node[rotate = 0, fill=lager, rounded corners] at (9,1.7) {
+%		\footnotesize
+%		\textcolor{white}{$900<f<1000$ GeV}
+%		};
+%		\node[right]  at (4,5) {\Comment{Ruled out}};
+%	\end{tikzpicture}
+%	\end{center}
+%	\normalsize 
+%		
+%
+%	% \footnotesize\textcolor{Comment}{1104.3572}
+%\end{frame}
+
+
+% {
+% \setbeamercolor{background canvas}{bg=black}
+% \setbeamercolor{normal text}{bg=red!12}
+% \beamertemplateshadingbackground{yellow!50}{magenta!50}
+% \begin{frame}{Test}
+% 	% \setbeamertemplate{background canvas}[vertical shading][bottom=red!20,top=yellow!30]
+% 	
+% 	
+% 	\textcolor{white}\Large Test
+% \end{frame}
+% }
+
+
+
+\begin{frame}[c]{Miscellaneous}
+	\begin{itemize}
+		\item Use \texttt{\textbackslash only<2>} to only show something for one overlay
+		\item Can also use \texttt{<2->}
+		\item For example, can \only<2->{\textcolor{ALERT}{highlight}} highlight a word
+		\item If you use \texttt{\textbackslash uncover<3->} you get a \uncover<3->{\textcolor{Alert}{space}} ... see?
+		\item Protip: use \texttt{\textbackslash textbackslash} to get a backslash
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[c]{Problems and Kludges}{Things to work on}
+	\begin{itemize}
+		\item There seems to be a bug in Beamer where the footnote color (defined using \texttt{setbeamercolor\{footnote\}} and \texttt{setbeamercolor\{footnote mark\}}) contaminates the normal text color. For now I suggest not using footnotes. \comment{They're of questionable use in a talk, anyway.}
+		\item Even though comment text is footnote-sized, it still has normal text line spacing. The \texttt{setspace} environment can fix this, but it forces a newline and it seems to make footnotes disappear. 
+		\item Make color theme more uniform and based on palette colors.
+		% \item It seems like \texttt{setbeamertemplate} can only be used once, subsequent calls are ignored. This means that you can't use a custom background on a single slide. This seems to be due to \textit{XeLaTeX}. % http://tex.stackexchange.com/questions/29497/xelatex-preventing-beamer-from-using-different-backgrounds
+	\end{itemize}
+\end{frame}
+
+
+%% Not quite fixed 
+\setbeamertemplate{background canvas}[vertical shading][bottom=keynotebottom, middle=keynotemiddle, top=keynotetop]
+\begin{frame}[c]{Problems and Kludges}{XeLaTeX, LuaLaTeX}
+	 
+	XeLaTeX doesn't allow one to use \texttt{setbeamertemplate[background canvas]} multiple times (e.g. to have one slide with a different background). A fix is to include \texttt{\textbackslash def \textbackslash pgfsysdriver\{pgfsys-dvipdfmx.def\} } before the \texttt{documentclass}, but this ends up breaking the arrows pointing to nodes.
+	
+	In principle, LuaLaTeX can solve this, but that also requires some work since it only looks at Open Type Fonts (e.g. Gill Sans is not available by default).
+	
+	\comment{\url{http://tex.stackexchange.com/questions/29497/xelatex-preventing-beamer-from-using-different-backgrounds}}
+\end{frame}
+
+
+
+\begin{frame}[t]{Acknowledgements}
+	I have borrowed heavily (and learned much) from Marco Barisione's \alert{Torino theme}, which can be found one his blog. I have also learned and borrowed from Shawn Lankton's Keynote theme. 
+	
+	\vspace{1em}
+	These can be found at
+	\begin{itemize}
+		\item \url{http://blog.barisione.org}
+		\item \footnotesize{\url{http://www.shawnlankton.com/2008/02/beamer-and-latex-with-keynote-theme/}}
+	\end{itemize}
+	
+	\vspace{1em}
+	I've tried to maintain lots of comments in the \texttt{.tex} and \texttt{.sty} files to help other template-designers. At the moment it's all a jumbled mess, though!
+\end{frame}
+
+
+
+\addtocounter{framenumber}{-1}
+\begin{frame}[c]{Extra page: Additional hints}{Look, it doesn't add to the total page count!}
+	\begin{itemize}
+		\item Be sure to turn off any auto-notifiers (e.g.\ GMail)
+		\item Consider using a PDF-to-keynote program; \url{http://www.cs.hmc.edu/~oneill/freesoftware/pdftokeynote.html}.
+		\item Don't ever go over time.
+		\item TikZ transparency trick: \url{http://www.texample.net/tikz/examples/transparent-png-overlay/}
+		\item Use \alert{\texttt{addtocounter\{framenumber\}\{-1\}}} for extra slides (like this one) to prevent it from screwing up the page numbering.
+	\end{itemize}
+\end{frame}
+

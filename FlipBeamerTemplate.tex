@@ -1,0 +1,152 @@
+%% BEAMER THEME FLIP 2012: Main tex file for compiling
+%$ Compile this file. 
+%%
+%% Copyright 2012 by Flip Tanedo
+%% This file may be distributed and/or modified
+%% 	1. under the LaTeX Project Public License and/or
+%% 	2. under the GNU Public License.
+%% 
+%% If you e-mail Flip (pt267@cornell.edu) to say that you
+%% like this style file, then it would make him smile.
+
+%% Please see notes.txt for comments on Beamer Theme Flip 2013
+%% By default, this template is meant to be run with XeLaTeX (for fonts)
+%% To run in PDFLaTeX, remove fontspec and any font commands
+
+%% Discussion of Beamer vs XeLaTeX vs LuaLaTeX
+%% http://tex.stackexchange.com/questions/29497/xelatex-preventing-beamer-from-using-different-backgrounds
+
+
+
+\documentclass[12 pt]{beamer}
+\usetheme[
+	bullet=circle,		% Other option: square
+	bigpagenumber,		% circled page number on lower right
+	topline=true,			% colored bar at the top of the frame 
+	shadow=false,			% Shading for beamer blocks
+	watermark=BG_lower,	% png file for the watermark
+	]{Flip}
+
+
+\newcommand{\titleimage}{title}			% Custom title 
+\newcommand{\tanedo}{tanedolight}		% Custom author name
+\newcommand{\CMSSMDM}{CMSSMDMlight.png}	% light background plot
+
+
+%%%%%%%%%%
+% FONTS %
+%%%%%%%%%%
+
+%% Default font: lmodern, doesn't require fontspec % solves some default warnings
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}			
+%\usepackage{sfmath}		% Sans Serif Math, off by default
+
+%% Protects fonts from Beamer screwing with them
+%% http://tex.stackexchange.com/questions/10488/force-computer-modern-in-math-mode
+\usefonttheme{professionalfonts}
+
+
+%% XeLaTeX fonts: (comment out if you don't use XeLaTeX)
+
+%% For advanced fonts: access local OS X fonts
+\usepackage[no-math]{fontspec}		
+%% This template uses typical OS X and Adobe fonts
+\defaultfontfeatures{Mapping=tex-text}	% This seems to be important for mapping glyphs properly
+
+\setmainfont{Gill Sans}			% Beamer ignores "main font" in favor of sans font
+\setsansfont{Gill Sans}			% This is the font that beamer will use by default
+% \setmainfont{Gill Sans Light}		% Prettier, but harder to read
+
+\setbeamerfont{title}{family=\fontspec{Gill Sans}}
+
+
+\newcommand{\handwriting}{\fontspec{augie}} % From Emerald City, free font
+% \newcommand{\handwriting}{}	% If you prefer no special handwriting font or don't have augie
+
+%% Gill Sans doesn't look very nice when boldfaced
+%% This is a hack to use Helvetica instead
+%% Usage: \textbf{\forbold some stuff}
+\newcommand{\forbold}{\fontspec{Helvetica}}
+% \newcommand{\forbold}{} % if you want no special boldface
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Usual LaTeX Packages %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathrsfs} 			% For Weinberg-esque letters
+\usepackage{cancel}				% For "SUSY-breaking" symbol
+\usepackage{slashed}            % for slashed characters in math mode
+\usepackage{bbm}                % for \mathbbm{1} (unit matrix)
+\usepackage{amsthm}				% For theorem environment
+\usepackage{multirow}			% For multi row cells in table
+\usepackage{arydshln} 			% For dashed lines in arrays and tables
+\usepackage{tikzfeynman}		% For Feynman diagrams
+% \usepackage{subfig}           % for sub figures
+% \usepackage{young}			% For Young Tableaux
+% \usepackage{xspace}			% For spacing after commands
+% \usepackage{wrapfig}			% for Text wrap around figures
+% \usepackage{framed}
+
+
+\graphicspath{{images/}}	% Put all images in this directory. Avoids clutter.
+
+
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{mindmap,trees}	% For mind map
+% http://www.texample.net/tikz/examples/computer-science-mindmap/
+
+
+% SOME COMMANDS THAT I FIND HANDY
+% \renewcommand{\tilde}{\widetilde} % dinky tildes look silly, dosn't work with fontspec
+\newcommand{\comment}[1]{\textcolor{comment}{\footnotesize{#1}\normalsize}} % comment mild
+\newcommand{\Comment}[1]{\textcolor{Comment}{\footnotesize{#1}\normalsize}} % comment bold
+\newcommand{\COMMENT}[1]{\textcolor{COMMENT}{\footnotesize{#1}\normalsize}} % comment crazy bold
+\newcommand{\Alert}[1]{\textcolor{Alert}{#1}} % louder alert
+\newcommand{\ALERT}[1]{\textcolor{ALERT}{#1}} % loudest alert
+%% "\alert" is already a beamer pre-defined
+
+
+
+\author[Flip Tanedo\quad {pt267@cornell.edu}]{Flip Tanedo}
+\title[Flip's Beamer Theme]{Flip's Beamer Theme}
+\institute{Cornell University}
+\date{\today}
+
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Additional  settings %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% To use external nodes; http://www.texample.net/tikz/examples/beamer-arrows/
+\tikzstyle{every picture}+=[remember picture]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Actual content below %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% It's much nicer to have all the content in a separate file
+\include{content}
+
+% \begin{frame}{test}
+% 	Main text still in Gill Sans
+% 	$$\frac{f}{f^4}$$
+% 	
+% 	But math is now different
+% 	\Large
+% 	$$\frac{f^2}{f^4}$$
+% \end{frame}
+
+
+\end{document}
+

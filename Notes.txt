@@ -1,0 +1,168 @@
+2013 Version: semi-public 
+
+HELP, IT WON'T COMPILE!
+The default template file is meant to be run using XeLaTeX, a variant of LaTeX which can access fonts from your OS X system. XeLaTeX is available online and comes with the MacTeX package. If you compile using an editor, you might need to change the typesetting engine from PDFLaTeX to XeLaTeX. If you do not want to use XeLaTeX, then you'll have to comment out the font commands in the template file.
+
+Change notes:
+* Removed default support for "dark" background in the template, though "dark" options still exist in the style files. The dark background looks great, but it's a pain to re-format graphics (e.g. need two copies of each picture) and also a pain to print out copies of the slides. I no longer feel that dark background talks are appropriate for physics talks. (Still great for keynote talks at Apple conferences, though!)
+
+* I've also had a change of heart and support serif math fonts. Sans serif is thematically more compatible with the sans serif text font, but physicists are used to reading equations in serif and this makes it easier to read.
+
+* Added more examples, removed some old examples. 
+
+WHERE TO GET HELP
+http://tex.stackexchange.com/
+
+A nice way to add to the template:
+http://tex.stackexchange.com/questions/27906/positioning-logo-in-the-front-page-as-well-as-slides
+
+OPEN QUESTIONS:
+http://tex.stackexchange.com/questions/29497/xelatex-preventing-beamer-from-using-different-backgrounds
+
+
+
+OLD NOTES
+---------
+
+2012 Version
+------------
+
+I've thrown out a lot of garbage and simplified this to a minimal theme. For now watermarking is not an option because the watermarks always end up looking heavy handed.
+
+
+
+2011 Version
+------------
+
+* My upper and lower (psd) files (design folder) would make good backgrounds.
+* Also: blasen.jpg image would be good for a dark background.
+
+Some things that I've learned about modifying style files
+
+
+GRAPHICS
+--------
+
+PDFLaTeX (I haven't tested others) will respect the transparency of png graphics.
+Here's a nice trick you can do with them:
+http://www.texample.net/tikz/examples/transparent-png-overlay/
+(See also the Beamer+Tikz example below)
+
+In this document I have made use of png transparency for my watermarks...
+
+
+
+WATERMARKING
+------------
+
+1) The first problem with watermarks is that they need to really be *transparent* (or semi-opaque), or else the background won't show through. This is really noticeable if your background color is not plain white. Fortunately, since PGF respects png transparency, watermark images should be saved as png images. (Of course you should make sure the image that you're saving has no background!) Alternately, if you have a nice vector representation in TikZ, you can use the "opacity" option to make it semi-opaque.
+
+2) The second problem with watermarks is that even once you have a transparent image, how do you stick it *behind* the main text of each slide? This is surprisingly subtle. The solution is to put all watermarks the "sidebar right" region controlled by the outer theme style. Anything placed here will remain BEHIND the main text of the screen. 
+
+
+
+OPTIONS
+-------
+
+I had a hard time finding references explaining how options worked in packages. The example that made things start to click together for me is the bullet option (originally from the Torino themes).
+
+In the style file (beamerthemeFlip.sty) there is a line defining the option:
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemeFlip}}
+
+This says that there is an option called bullet that can be accessed in the main tex file when calling the theme:
+\usetheme[bullet]{Flip}
+
+In fact, the #1 means that we can have options,
+\usetheme[bullet=circle]{Flip}
+
+What does the main theme file do with this? It passes the option along to the inner theme file by saying "bullet=#1". It doesn't do this, however, until the options are processed with the following command:
+\ProcessOptionsBeamer
+
+Now we can go to to the inner theme file to see what it does with this information. We start again at the top of the file where we have to again define the option:
+\DeclareOptionBeamer{bullet}{\def\beamer@Flip@bullet{#1}}
+
+This defines another "bullet" option in the outertheme. What does it do when it is fed some input? It defines a variable "\beamer@Flip@bullet" and sets it to whatever value was passed to it. Once again the options have to be processed in this file:
+\ProcessOptionsBeamer
+
+NOTE: to set default options, one can have a command like:
+\ExecuteOptionsBeamer{alternativetitlepage=false,bullet=square}
+preceeding the \ProcessOptionsBeamer command. This will set options that need to have default values, then running Process Options will overwrite any options that are defined by the user in the main tex file. 
+
+Now scrolling down in the inner theme file, we see what it does with the information.:
+\def\circletext{circle}
+\ifx\beamer@Flip@bullet\circletext
+  \setbeamertemplate{items}[circlealt]
+\else
+  \setbeamertemplate{items}[squarealt]
+\fi
+
+First we define another variable, \circletext which is just set to "circle". The \ifx command (see below) compares the content of the option \beamer@Flip@bullet with the content of \circletext. If it finds that they are equal, it loads a template for the styles of the items, called circlealt. If they are not equal, it loads the item style called squarealt. 
+ 
+
+
+IFX
+---
+The \ifx, \else, \fi commands work straightforwardly. The reason why we use \ifx and not \if is that we are comparing macros, and \if gets confused if the macro contains certain characters (namely '%').
+
+This is explained nicely in http://www.physics.wm.edu/~norman/latexhints/conditional_macros.html
+
+One key application that will be useful for fonts is:
+\ifx \@testmacro \@empty
+Code to be executed if the macro is undefined
+\else
+Code to be executed if the macro IS defined
+\fi
+
+
+This can also be used as a kludge for true/false options:
+In the main file:
+\usetheme[
+	testtrue=true,	% "true" or anything else = false
+	]{Flip}     
+
+In beamerthemeFlip.sty:
+\DeclareOptionBeamer{testtrue}[true]{\PassOptionsToPackage{testtrue=#1}{beamerouterthemeFlip}}
+	% pass option to the outertheme (for example)
+	
+In beamerouterthemeFlip.sty:
+\DeclareOptionBeamer{testtrue}[true]{\def\beamer@Flip@testtrue{#1}}
+\ExecuteOptionsBeamer{testtrue=false} % Default
+\def\beamer@Flip@truetext{true} % Kludge for true/false so I can use ifx
+
+
+Implementation in the outertheme:
+\ifx\beamer@Flip@testtrue\beamer@Flip@truetext
+	Poop
+\else NoPoop \beamer@Flip@testtrue
+\fi
+
+
+
+FONTS
+-----
+
+Armed with the \ifx directive, we can now start playing with fonts without having to worry about what happens if those fonts haven't been installed. This is important. Some nice LaTeX-friendly fonts are loaded by simply calling a package, but fancier fonts (e.g. the Emerald fonts, Gill Sans of Keynote fame, or my favorite Myriad Pro) require more delicate installation. 
+
+More information at the following links
+http://www.tug.dk/FontCatalogue/
+http://mactex-wiki.tug.org/wiki/index.php?title=Typefaces#Background
+http://mactex-wiki.tug.org/wiki/index.php/Font_Installation
+http://www.tug.org/fonts/fontinstall.html
+http://tug.org/mactex/faq/#qm04
+
+Myriad Pro:
+http://nablasquared.wordpress.com/2008/01/20/myriadpro-support-in-latex/
+http://www.mofeel.net/809-comp-text-tex/14999.aspx
+http://lglinux.blogspot.com/2007/09/myriad-and-minion-for-latex.html
+
+
+BEAMER + TIKZ
+-------------
+
+Awesome example
+http://www.texample.net/tikz/examples/beamer-arrows/
+See also:
+http://www.texample.net/tikz/examples/beamer-arrows/#c890
+
+
+Overlay: http://www.texample.net/tikz/examples/connecting-text-and-graphics/

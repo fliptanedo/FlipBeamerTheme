@@ -1,0 +1,174 @@
+% Color style file for the BEAMER FLIP THEME
+% Copyright 2012 by Flip Tanedo
+% This file may be distributed and/or modified
+% 	1. under the LaTeX Project Public License and/or
+% 	2. under the GNU Public License.
+
+
+
+\mode<presentation>
+\newif\ifbeamer@Flip@dark
+\beamer@Flip@darkfalse
+\DeclareOptionBeamer{dark}{\beamer@Flip@darktrue}
+\ProcessOptionsBeamer
+
+
+% These are a few colors that I like.
+
+\definecolor{crimsonred}{RGB}{153,0,0}		% Neurtal red, good for dark or light bg
+\definecolor{darkcharcoal}{RGB}{25,25,25}		% Darker gray
+\definecolor{charcoal}{RGB}{51,51,51}		% Darker gray
+\definecolor{ash}{RGB}{100,100,100}			% medium gray
+\definecolor{paleblue}{RGB}{0,102,102}		% More of an `ocean' color
+\definecolor{turtlegreen}{RGB}{51,153,0}	% A more neutral green
+\definecolor{paleale}{RGB}{204,204,102}		% Only for dark BG
+\definecolor{lager}{RGB}{140,110,10}		% Use instead of pale ale for white BG
+\definecolor{regal}{RGB}{90,0,120}			% A more neutral purple
+\definecolor{jeans}{RGB}{20,30,150}			% A more neutral blue
+
+
+% Define some "invariant colors" so that a color that doen't work with a
+% light/dark background will automatically be substituted with one that does.
+% These will be rewritten in beamercolorthemeFlipDark
+
+\ifbeamer@Flip@dark
+	\definecolor{FlipSand}{RGB}{204,204,102}		% paleale, Only for dark BG
+	\definecolor{FlipGreen}{RGB}{0,255,0}			% Neon-like green, only for dark BG
+\else
+	\definecolor{FlipSand}{RGB}{140,110,10}			% lager, Only for light BG
+	\definecolor{FlipGreen}{RGB}{51,153,0}			% turtlegreen, works for both
+\fi
+
+%% Future revision: It would be nice to define these in terms of the palette.
+
+
+\ifbeamer@Flip@dark
+	\setbeamercolor{normal text}{fg=white, bg=black}		
+	\setbeamercolor{structure}{fg=gray, bg=black}		% fg controls bullets
+	\setbeamercolor*{footerlike}{fg=white,bg=black}		% Controls the footerline
+\else
+	% Default to black on white
+	\setbeamercolor*{footerlike}{fg=white,bg=charcoal}	% for charcoal footer
+	\setbeamercolor{structure}{fg=charcoal, bg=white}	% fg controls bullets
+	% \setbeamercolor{normal text}{fg=white, bg=black}	
+\fi
+
+
+
+
+
+% These defined colors can be used in \textcolor{colorname}{text in that color}.
+
+% Colors for Keynote background: DARK
+\definecolor{keynotebottom}{rgb}{0.32,0.3,0.38}
+\definecolor{keynotemiddle}{rgb}{0.08,0.08,0.16}
+\definecolor{keynotetop}{rgb}{0,0,0}
+%%% Example of usage:
+%% \setbeamertemplate{background canvas}[vertical shading]
+%% [bottom=keynotebottom, middle=keynotemiddle, top=keynotetop]
+
+
+
+
+% ALERT AND COMMENT COLORS (just copies of the above colors)
+% (I don't know how ot do this more elegantly)
+\ifbeamer@Flip@dark
+	\definecolor{ALERT}{RGB}{153,0,0}			% crimsonred
+	\definecolor{Alert}{RGB}{51,153,0}			% turtlegreen
+	\definecolor{alert}{RGB}{204,204,102}		% paleale		
+	\definecolor{charcoal}{RGB}{51,51,51}		% charcoal
+	\definecolor{comment}{RGB}{80,80,80}		% light charcoal
+	\definecolor{Comment}{RGB}{100,100,100}		% ash
+	\definecolor{COMMENT}{RGB}{80,20,120}		% regal
+\else
+	\definecolor{ALERT}{RGB}{153,0,0}			% crimsonred
+	\definecolor{Alert}{RGB}{51,153,0}			% turtlegreen
+	\definecolor{alert}{RGB}{140,110,10}		% lager
+	\definecolor{charcoal}{RGB}{80,80,80}		% light charcoal
+	\definecolor{comment}{RGB}{51,51,51}		% charcoal
+	\definecolor{Comment}{RGB}{100,100,100}		% ash
+	\definecolor{COMMENT}{RGB}{80,20,120}		% regal
+\fi
+
+
+% \definecolor{crimsonred}{RGB}{153,0,0}		% Neurtal red, good for dark or light bg
+% \definecolor{charcoal}{RGB}{51,51,51}		% Darker gray
+% \definecolor{ash}{RGB}{100,100,100}			% medium gray
+% \definecolor{paleblue}{RGB}{0,102,102}		% More of an `ocean' color
+% \definecolor{turtlegreen}{RGB}{51,153,0}	% A more neutral green
+% \definecolor{paleale}{RGB}{204,204,102}		% Only for dark BG
+% \definecolor{lager}{RGB}{140,110,10}		% Use instead of pale ale for white BG
+% \definecolor{regal}{RGB}{90,0,120}			% A more neutral purple
+% \definecolor{jeans}{RGB}{20,30,150}			% A more neutral blue
+
+
+% A few useful colors
+\setbeamercolor{alerted text}{fg=alert}
+
+%% I would like ot use these colors, but there seems to be a bug in Beamer
+%% where the footnote color infects the normal text color
+%% See:  http://tex.stackexchange.com/questions/8264/beamer-changing-the-footnote-color-also-changes-the-normal-text-color/8268#8268
+
+% \setbeamercolor{footnote}{parent=normal text, fg=FlipSand}
+% \setbeamercolor{footnote mark}{parent=normal text, fg=FlipSand}
+
+% Blocks
+\setbeamercolor{block title}{fg=gray!30!white,bg=charcoal}
+\setbeamercolor{block body}{parent=normal text,bg=gray, fg=white}
+
+\setbeamercolor{block title example}{fg=turtlegreen!30!white,bg=turtlegreen!40!black}
+\setbeamercolor{block body example}{parent=normal text,bg=turtlegreen, fg=white}
+% 
+\setbeamercolor{block title alerted}{fg=crimsonred!30!white,bg=crimsonred!40!black}
+\setbeamercolor{block body alerted}{parent=normal text,bg=crimsonred, fg=white}
+
+
+
+% These "setbeamercolor" commands are more standardized. 
+
+
+%% From the Beamer User Guide:
+% Outer themes base the color of navigational elements and, possibly, also of other elements, on the 
+% four palette colors. The “primary” palette should be used for the most important navigational elements, 
+% which are usually the ones that change most often and hence require the most attention by the audience. 
+% The “secondary” and “tertiary” are less important, the “quaternary” one is least important. 
+% By default, the palette colors do not have a background and the foreground ranges from structure.fg to black. 
+% For the sidebar, there is an extra set of palette colors, see palette sidebar primary.
+
+\setbeamercolor*{palette primary}{fg=crimsonred,bg=charcoal}
+\setbeamercolor*{palette secondary}{fg=paleale,bg=lager}
+\setbeamercolor*{palette tertiary}{fg=turtlegreen,bg=jeans}
+\setbeamercolor*{palette quaternary}{fg=paleblue,bg=regal}
+
+% \setbeamercolor*{palette primary}{fg=crimsonred,bg=white}
+% \setbeamercolor*{palette secondary}{fg=charcoal,bg=white}
+% \setbeamercolor*{palette tertiary}{fg=paleblue,bg=white}
+% \setbeamercolor*{palette quaternary}{fg=turtlegreen,bg=white}
+
+
+
+%% These are some structures that I define for use in the outer theme.
+
+\setbeamercolor*{crimsontown}{fg=paleblue,bg=crimsonred}
+\setbeamercolor*{titlelike}{fg=crimsonred}
+\setbeamercolor*{topbarlike}{fg=white, bg=charcoal}
+
+
+
+
+
+%% Some old definitions that I might want to get back to
+%
+% \setbeamercolor*{frametitle}{bg=white,fg=charcoal}
+% \setbeamercolor*{part title}{bg=white,fg=charcoal}
+% \setbeamercolor*{item}{fg=charcoal, bg=white}
+% 
+% \setbeamercolor*{separation line}{}
+% \setbeamercolor*{fine separation line}{}
+
+
+
+
+
+\mode
+<all>

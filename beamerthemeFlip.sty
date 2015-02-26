@@ -1,0 +1,59 @@
+% Main style file for the BEAMER FLIP THEME 2012
+% Copyright 2012 by Flip Tanedo
+% This file may be distributed and/or modified
+% 	1. under the LaTeX Project Public License and/or
+% 	2. under the GNU Public License.
+%
+% Comments: This is still a work in progress.
+% A good way to present: http://www.cs.hmc.edu/~oneill/freesoftware/pdftokeynote.html
+
+% \usepackage{beamerthemesplit}
+\mode<presentation>
+
+
+%% These are the options that are fed in through the driver file
+%% Some of them get passed on to the other theme files
+\DeclareOptionBeamer{bullet}{\PassOptionsToPackage{bullet=#1}{beamerinnerthemeFlip}}
+\DeclareOptionBeamer{bigpagenumber}{\PassOptionsToPackage{bigpagenumber}{beamerouterthemeFlip}}
+\DeclareOptionBeamer{topline}[true]{\PassOptionsToPackage{topline=#1}{beamerouterthemeFlip}}
+\DeclareOptionBeamer{shadow}[false]{\PassOptionsToPackage{shadow=#1}{beamerinnerthemeFlip}}
+
+\DeclareOptionBeamer{watermark}{\PassOptionsToPackage{watermark=#1}{beamerouterthemeFlip}}
+
+\ProcessOptionsBeamer
+
+\useinnertheme{Flip}	% Calls beamerinnerthemeFlip.sty
+\useoutertheme{Flip}	% Calls beamerouterthemeFlip.sty
+\usecolortheme{Flip}	% Calls beamercolorthemeFlip.sty
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Background  Gradient %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Usually I would leave this on
+%% However, there seems to be problems with XeLaTeX
+%% http://tex.stackexchange.com/questions/29497/xelatex-preventing-beamer-from-using-different-backgrounds
+\setbeamertemplate{background canvas}[vertical shading][bottom=blue!.1, middle=white, top=white]
+
+%% HOWEVER: it seems to make it impossible to change this later on in the document
+
+
+%% For a dark background: 
+% \setbeamertemplate{background canvas}[vertical shading][bottom=keynotebottom, middle=keynotemiddle, top=keynotetop]
+
+
+%% An alternate way: \beamertemplateshadingbackground{blue!.1}{red!2}
+%% In general: you want the gradient to be subtle!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Navigation  symbols %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{navigation symbols}{} 	% Turns off PDF navigation symbols
+
+\mode<all>
+\endinput

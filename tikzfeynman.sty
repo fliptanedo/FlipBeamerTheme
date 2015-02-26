@@ -1,0 +1,43 @@
+% Tikz Feynman Diagrams
+% by Flip Tanedo
+% 4 January 2011, work in progress
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TIKZ - for drawing Feynman diagrams %%%%
+%%% ... use with pdflatex   			%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{trees}
+\usetikzlibrary{matrix,arrows} 				% For commutative diagram
+											% http://www.felixl.de/commu.pdf
+\usetikzlibrary{positioning}				% For "above of=" commands
+\usetikzlibrary{calc,through}				% For coordinates
+\usetikzlibrary{decorations.pathreplacing}  % For curly braces
+\usepackage[tikz]{bclogo} 					% For cute logo boxes
+\usepackage{pgffor}							% For repeating patterns
+
+\usetikzlibrary{decorations.pathmorphing}	% For Feynman Diagrams
+\usetikzlibrary{decorations.markings}
+\tikzset{
+	% >=stealth', %% Different kind of arrows
+    vector/.style={decorate, decoration={snake}, draw},
+    fermion/.style={postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow{>}}}},
+    fermionbar/.style={draw, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow{<}}}},
+    fermionnoarrow/.style={},
+    gluon/.style={decorate,
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    scalar/.style={dashed, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow{>}}}},
+    scalarbar/.style={dashed, postaction={decorate},
+        decoration={markings,mark=at position .55 with {\arrow{<}}}},
+    scalarnoarrow/.style={dashed,draw},
+%
+%% 	Special vectors (when you need to fine-tune wiggles)
+	provector/.style={decorate, decoration={snake,amplitude=2.5pt}, draw},
+	antivector/.style={decorate, decoration={snake,amplitude=-2.5pt}, draw},
+}
+
